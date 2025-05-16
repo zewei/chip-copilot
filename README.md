@@ -138,7 +138,6 @@ The problem for automating the whole process of designing an Chip/SoC:
 > * [LiteX](https://github.com/enjoy-digital/litex) and OpenESP. Two other notable SoC generators are LiteX and ESP. LiteX serves as a framework thought to explore various FPGA-based architectures. On the other hand, ESP is an open-source platform designed for heterogeneous SoC design and prototyping on FPGAs. Both platforms offer configurable options, allowing designers to customize core type, memory size, peripherals, and the number of external master and slave ports, making them adaptable to various application requirements.
 > * However, LiteX and ESP focus on FPGA development only and do not offer support for ASIC design flow. Such limitations hinder their applicability in projects aimed at silicon implementations and present difficulties in accurately estimating the platform energy consumption, crucial when evaluating the impact of integrated accelerators. Moreover, they lack built-in support for external interrupts and power control.
 >
-> * 
 
 ## What is Chip/SoC Copliot?
 
