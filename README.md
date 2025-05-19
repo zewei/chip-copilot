@@ -109,14 +109,9 @@ The SoC is generated using a custom generator written in Python [migen](https://
 ## Main Goals of Chip/SoC Copilot
 
 The main focus of Chip/SoC Copilot is on large and complex SoCs in which integration expertise is essential. The main goals are：
-1) creation of a versatile Chip/SoC template
-2) development of agile Chip/SoC development design process
-
-The primary goals of Chip-Copilot are:
-
-Creation of a versatile Chip/SoC template
-Development of agile Chip/SoC development methodologies
-Enabling the automation of SoC integration
+1) Creation of a versatile Chip/SoC template
+2) Development of agile Chip/SoC development methodologies
+3) Enabling the automation of SoC integration
 
 The problem for automating the whole process of designing an Chip/SoC:
 1) Attaining a comprehensive description methodology to represent any potential IP adequately
@@ -126,7 +121,9 @@ The problem for automating the whole process of designing an Chip/SoC:
 5) Usability and achieving the no-man-in-the-loop goal, while ensuring the accessibility of all the files and generated outputs of the intermediate stages of the process to the designers to discern and reform
 6) Avoiding huge compromises in the quality of the work produced, if compared with a fully manual design process. Hence, we articulate our project’s objectives as versatility, usability, extensibility, reliability, competence,and efficiency
 
-## Chip/SoC Copilot：Reuse，Modularize，Automate
+## Core Strategy: Reuse, Modularize, Automate
+
+Chip-Copilot implements a three-pronged strategy to achieve agile hardware development:
 
 > **Reuse：** Extensible and parameterizable designs
 > * System Verilog

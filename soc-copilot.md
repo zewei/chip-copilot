@@ -184,7 +184,16 @@ CPU data packages are an essential component of the Chip-Copilot ecosystem, prov
 
 These packages deliver ready-to-use RISC-V core implementations in Verilog format, packaged as Python modules for easy integration into Python-based SoC design flows. This page focuses on the general structure, purpose, and usage patterns common to all CPU data packages. For specific details about individual CPU implementations, see [VexRISCV CPU Package]().
 
+The CPU data packages follow a consistent architecture, packaging non-Python files (primarily Verilog) into Python modules to make them accessible to Python-based hardware design tools.
 
+Each package typically contains:
+
+1) A Python module with helper functions for accessing the data files
+2) A directory containing Verilog implementations of CPU cores
+3) Optional configuration files for customizing the cores
+4) Installation and build scripts
+
+The CPU data packages integrate seamlessly into the Python-based SoC design flow, enabling hardware designers to incorporate RISC-V cores into their designs with minimal effort.
 
 
 
