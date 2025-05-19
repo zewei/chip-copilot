@@ -40,44 +40,6 @@ There has been also an effort to establish principles and practices for agile Ch
 >  1) The first scenario is enabling end-users who are not experienced in SoC design to easily tape-out chips with the desired system behavior. All the user has to do is describe the system architecture in a simple format, then start the flow.
 >  2) The second scenario is experienced SoC designers can review the generated files at each intermediate step of hardening then do the required modifications to address any concerns. In addition, experienced designers can benefit from the flexibility of the tool and the ease of reiterating the design through the flow. 
 
-## Main Goals of Chip/SoC Copilot
-
-The main focus of Chip/SoC Copilot is on large and complex SoCs in which integration expertise is essential. The main goals are：
-1) creation of a versatile Chip/SoC template
-2) development of agile Chip/SoC development design process
-
-The problem for automating the whole process of designing an Chip/SoC:
-1) Attaining a comprehensive description methodology to represent any potential IP adequately
-2) Circumscribing how the connections between the different IPs, buses, and masters are amply described
-3) Parsing the representation and generating the proper format and connections of all the Verilog modules that make up the SoC
-4) Adhering to an acceptable runtime period to fulfill the purposes of the automation process and render it attractive to designers. Thus, the efficiency of the process is critical, and its maintenance is inevitable to keep the project updated with the most modern technologies
-5) Usability and achieving the no-man-in-the-loop goal, while ensuring the accessibility of all the files and generated outputs of the intermediate stages of the process to the designers to discern and reform
-6) Avoiding huge compromises in the quality of the work produced, if compared with a fully manual design process. Hence, we articulate our project’s objectives as versatility, usability, extensibility, reliability, competence,and efficiency
-
-## Chip/SoC Copilot：Reuse，Modularize，Automate
-
-> **Reuse：** Extensible and parameterizable designs
-> * System Verilog
-> * Python HDL 
-> * Chisel Generator
-> 
-> **Modularize：** Agile design and development
-> * Hierarchical design to reduce tool time
-> * Optimize designs at the component level
-> * Black-box designs for use across teams
-> * SCRUM-like task management
-> * Sprinting to “tape-ins”
-> * Establish design interfaces early (RoCC, Basejump)
-> * Use latency-insensitive interfaces to remove crossmodule timing dependencies
-> * Identify specific deliverables between different teams(esp. analog→digital)
-> 
-> **Automate**
-> * Abstracted implementation and testing flows
-> * Develop implementation flow adaptable to arbitrary designs
-> * Use validated IP components to focus only on integration testing
-> * Use high-level testing abstractions to speed up test development (PyMTL)
-
-
 ## Python HDL
   - [migen](https://github.com/m-labs/migen) - Meta HDL, Python toolbox for building complex digital hardware, 2011+
   - [Amaranth](https://github.com/amaranth-lang/amaranth) - Refreshed migen Python toolbox, 2018+
@@ -125,27 +87,64 @@ The problem for automating the whole process of designing an Chip/SoC:
 > * [Cheshire](https://github.com/pulp-platform/pulpissimo) The limitations mentioned above have been partially addressed by another PULP-based platform, called Cheshire. Cheshire is based on the CVA6 and allows designers to choose the number of external slave and master ports to connect their custom accelerators. Furthermore, the platform allows for the configuration of the internal last-level cache (LLC) size and of the necessary peripherals, providing the flexibility needed to target specific application requirements.
 > * However, Cheshire has been designed for high-performance systems and consumes up to 300 mW, making it unsuitable for most ultra-low-power devices, which typically operate in the range of tens of mW. Furthermore, Cheshire lacks support for external interrupts and power control, which has implications for its overall energy efficiency, as the accelerators are usually power-hungry. Lastly, designers do not have the option to select the core type, bus topology, and memory addressing mode.
 >
-> * Chipkit [46] uses a template-based code generation implemented in python to generate control and status registers for HW implementation with related SW API and documentation.
+> * [Chipkit](https://github.com/whatmough/CHIPKIT) uses a template-based code generation implemented in python to generate control and status registers for HW implementation with related SW API and documentation.
 > 
-> * OpenPiton [openpiton](https://github.com/PrincetonUniversity/openpiton) platform consists of a reused Ariane Linux-capable 64-bit RISC-V CPU core, PyOCN network on chip generator compilation framework for open source EDA tools, and FuseSoC IP management tool.
+> * [openpiton](https://github.com/PrincetonUniversity/openpiton) platform consists of a reused Ariane Linux-capable 64-bit RISC-V CPU core, PyOCN network on chip generator compilation framework for open source EDA tools, and FuseSoC IP management tool.
 >
-> * OpenESP [OpenESP](https://github.com/sld-columbia/esp) platform is a GUI-based tool covering accelerator IPs and SoC design tool flows. The ESP platform addresses verification, FPGA synthesis, device drivers, and test applications based on design parameters defined by the user. On the SoC, level connectivity is also addressed in the form of generated routing tables, memory maps, device trees, and SW header files. 
->
-> * [Blackparrot](https://github.com/black-parrot/black-parrot) An open-source Linux-capable platform designed to accommodate one or multiple customdesigned accelerators. The platform showcases a mesh of heterogeneous tiles, offering the flexibility to compose 64 bit BlackParrot cores, L2 cache slices, I/O, DRAM controllers, and accelerators in various configurations.
-> * However, it does not allow for selecting the core type, bus topology, and memory addressing mode. Additionally, the absence of essential peripherals commonly used in edge devices, such as I2Cs, GPIOs, timers, DMAs, interrupt controllers, and a power manager to implement low-power strategies, restricts the usage of the platform for real applications deployed on ultra-low-power edge applications. Moreover, the platform’s internal integration of accelerators, as opposed to external plug-ins, involves forking and modifying the original RTL code, leading to greater effort and higher development costs. Lastly, the 64 bit architecture of BlackParrot targets high-performance systems and is unsuitable for ultra-low-power edge devices.
->
-> * Chipyard [chipyard](https://github.com/ucb-bar/chipyard). On the contrary, the Rocket chip generator [26], which has been subsequently incorporated and expanded into the Chipyard platform, offers extensive configuration options. Using the open-source Chisel, designers can craft their system, providing flexibility and customization. The platform offers a wide range of core types, including Ariane, CV32E20, Rocket, and BOOM, allowing designers to tailor the system’s performance to meet specific application requirements. Additionally, the memory size and peripherals can be customized, further enhancing its adaptability.
-> * However, even though Chipyard enables accelerators to be integrated into the design using the Chisel language, the platform does not offer external master and slave ports for the connectivity of accelerators. As a result, designers need to invest time in becoming familiar with the Chisel language to successfully configure the architecture and integrate custom accelerators. Furthermore, Chipyard does not provide support for any specific power reduction strategies. Given the critical importance of power efficiency in ultra-low-power applications, designers are forced to implement power-saving techniques manually to achieve the desired energy efficiency level.
->
-> * [LiteX](https://github.com/enjoy-digital/litex) and OpenESP. Two other notable SoC generators are LiteX and ESP. LiteX serves as a framework thought to explore various FPGA-based architectures. On the other hand, ESP is an open-source platform designed for heterogeneous SoC design and prototyping on FPGAs. Both platforms offer configurable options, allowing designers to customize core type, memory size, peripherals, and the number of external master and slave ports, making them adaptable to various application requirements.
-> * However, LiteX and ESP focus on FPGA development only and do not offer support for ASIC design flow. Such limitations hinder their applicability in projects aimed at silicon implementations and present difficulties in accurately estimating the platform energy consumption, crucial when evaluating the impact of integrated accelerators. Moreover, they lack built-in support for external interrupts and power control.
->
+> * [OpenESP](https://github.com/sld-columbia/esp) platform is a GUI-based tool covering accelerator IPs and SoC design tool flows. The ESP platform addresses verification, FPGA synthesis, device drivers, and test applications based on design parameters defined by the user. On the SoC, level connectivity is also addressed in the form of generated routing tables, memory maps, device trees, and SW header files. 
 
 ## What is Chip/SoC Copliot?
 
-The Chip/SoC Copilot framework provides a convenient and efficient infrastructure to create and maintain SoC Platform.The SoC is generated using a custom generator written in Python [migen](https://www.controlpaths.com/2022/11/07/writing-verilog-code-using-python-with-migen/), which pulls together the CPU, peripherals, PAD, clock/reset tree, and creates the address mapping and the platform-support files needed to compile software for the core.
+The Chip/SoC Copilot framework provides a convenient and efficient infrastructure to create and maintain SoC Platform. Chip-Copilot aims to build a 100% Python-based SoC design environment that enables agile hardware development methodologies, promotes collaborative approaches, and facilitates the creation of reusable IPs and subsystems. The project addresses two emerging trends in hardware design:
+1) The increasing use of Python-embedded Domain-Specific Languages (DSLs) to improve hardware design and verification productivity
+2) The application of Large Language Models (LLMs) to enhance hardware design workflows
+
+The SoC is generated using a custom generator written in Python [migen](https://www.controlpaths.com/2022/11/07/writing-verilog-code-using-python-with-migen/), which pulls together the CPU, peripherals, PAD, clock/reset tree, and creates the address mapping and the platform-support files needed to compile software for the core.
 
 > How to Agile SoC：
 > * 100% Python
 > * Generator not module 
 > * Just instance HDL Module and interconnect
+
+## Main Goals of Chip/SoC Copilot
+
+The main focus of Chip/SoC Copilot is on large and complex SoCs in which integration expertise is essential. The main goals are：
+1) creation of a versatile Chip/SoC template
+2) development of agile Chip/SoC development design process
+
+The primary goals of Chip-Copilot are:
+
+Creation of a versatile Chip/SoC template
+Development of agile Chip/SoC development methodologies
+Enabling the automation of SoC integration
+
+The problem for automating the whole process of designing an Chip/SoC:
+1) Attaining a comprehensive description methodology to represent any potential IP adequately
+2) Circumscribing how the connections between the different IPs, buses, and masters are amply described
+3) Parsing the representation and generating the proper format and connections of all the Verilog modules that make up the SoC
+4) Adhering to an acceptable runtime period to fulfill the purposes of the automation process and render it attractive to designers. Thus, the efficiency of the process is critical, and its maintenance is inevitable to keep the project updated with the most modern technologies
+5) Usability and achieving the no-man-in-the-loop goal, while ensuring the accessibility of all the files and generated outputs of the intermediate stages of the process to the designers to discern and reform
+6) Avoiding huge compromises in the quality of the work produced, if compared with a fully manual design process. Hence, we articulate our project’s objectives as versatility, usability, extensibility, reliability, competence,and efficiency
+
+## Chip/SoC Copilot：Reuse，Modularize，Automate
+
+> **Reuse：** Extensible and parameterizable designs
+> * System Verilog
+> * Python HDL 
+> * Chisel Generator
+> 
+> **Modularize：** Agile design and development
+> * Hierarchical design to reduce tool time
+> * Optimize designs at the component level
+> * Black-box designs for use across teams
+> * SCRUM-like task management
+> * Sprinting to “tape-ins”
+> * Establish design interfaces early (RoCC, Basejump)
+> * Use latency-insensitive interfaces to remove crossmodule timing dependencies
+> * Identify specific deliverables between different teams(esp. analog→digital)
+> 
+> **Automate**
+> * Abstracted implementation and testing flows
+> * Develop implementation flow adaptable to arbitrary designs
+> * Use validated IP components to focus only on integration testing
+> * Use high-level testing abstractions to speed up test development (PyMTL)

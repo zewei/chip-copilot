@@ -1,6 +1,8 @@
-# SoC Copilot
+# Chip Copilot
 
 We are an open-source Python-based SoC (System on Chip) builder framework designed to simplify FPGA development. It provides a flexible and modular architecture that allows developers to create custom digital designs ranging from simple controllers to complex, CPU-based systems. This introduction provides an overview of LiteX's purpose, architecture, and core components.
+
+Chip-Copilot leverages several Python-based HDL frameworks to enable hardware description in Python. The SoC is generated using a custom generator written in Python, primarily leveraging migen, which pulls together the CPU, peripherals, PAD, clock/reset tree, and creates the address mapping and the platform-support files needed to compile software for the core.
 
 ## What is SoC Copilot
 
