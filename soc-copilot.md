@@ -4,6 +4,24 @@ We are an open-source Python-based SoC (System on Chip) builder framework design
 
 Chip-Copilot leverages several Python-based HDL frameworks to enable hardware description in Python. The SoC is generated using a custom generator written in Python, primarily leveraging migen, which pulls together the CPU, peripherals, PAD, clock/reset tree, and creates the address mapping and the platform-support files needed to compile software for the core.
 
+Chip-Copilot addresses key challenges in modern SoC design:
+
+1) Comprehensive IP description - Uses Python to represent any potential IP adequately
+2) Connectivity description - Defines clear methods to describe connections between IPs, buses, and masters
+3) Code generation - Generates proper format and connections for all Verilog modules
+4) Efficiency - Maintains acceptable runtime while ensuring flexibility
+5) Usability - Achieves "no-man-in-the-loop" automation while providing access to intermediate files
+6) Quality - Avoids compromising work quality compared to manual design processes
+
+Chip-Copilot provides a framework for agile SoC design using Python. It addresses the challenges of modern hardware design by:
+
+1) Enabling a 100% Python-based design environment
+2) Implementing agile hardware development principles
+3) Leveraging existing open-source tools and generators
+4) Following the "Reuse, Modularize, Automate" strategy
+
+The framework is designed to handle integration of complex SoCs, with support for various CPU cores, peripherals, and custom IP blocks, all described and generated using Python.
+
 ## What is SoC Copilot
 
 LiteX offers a comprehensive framework for designing and implementing digital systems on FPGAs. It was initially developed by Enjoy-Digital to create customer projects, and has evolved into a versatile open-source ecosystem embraced by a wide community of developers.
@@ -160,8 +178,11 @@ Running software on simulated CPUs
 Console interaction with simulated SoC
 Waveform generation and analysis
 
+# CPU Packages
 
+CPU data packages are an essential component of the Chip-Copilot ecosystem, providing hardware designers with access to pre-built RISC-V CPU cores that can be easily integrated into System-on-Chip (SoC) designs using Python-based tools.
 
+These packages deliver ready-to-use RISC-V core implementations in Verilog format, packaged as Python modules for easy integration into Python-based SoC design flows. This page focuses on the general structure, purpose, and usage patterns common to all CPU data packages. For specific details about individual CPU implementations, see [VexRISCV CPU Package]().
 
 
 
