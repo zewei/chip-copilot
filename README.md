@@ -53,11 +53,11 @@ There has been also an effort to establish principles and practices for agile Ch
   - [pymtl3](https://github.com/pymtl/pymtl3) - Python hardware generation, simulation, and verification framework, 2019
   - [pyverilog](https://github.com/PyHDI/Pyverilog) - Python design toolkit for Verilog HDL
 
-> * Chisel [31] is based on Scala language and thus inherits the modern SW language features such as parameterized types, abstract data types, operator overloading, and type inference. The Chisel generates to RTL HDL model of the HW, but also the Chisel model can be translated to a cycle-accurate C++ executable for fast simulation. 
+> * [Chisel]() is based on Scala language and thus inherits the modern SW language features such as parameterized types, abstract data types, operator overloading, and type inference. The Chisel generates to RTL HDL model of the HW, but also the Chisel model can be translated to a cycle-accurate C++ executable for fast simulation. 
 >
-> * PyMTL [pymtl3](https://github.com/pymtl/pymtl3) supports multilevel modeling on functional, cycle-accurate, and register-transfer levels. One of the key design principles is the modularity of the framework. That is achieved by dividing the platform into frontend, intermediate representations and passes similar to the LLVM compiler architecture. OpenPiton platform [8] uses also a PyMTL-based PyOCN network on chip generator in their work on developing custom SoC chips.
+> * [pymtl3](https://github.com/pymtl/pymtl3) supports multilevel modeling on functional, cycle-accurate, and register-transfer levels. One of the key design principles is the modularity of the framework. That is achieved by dividing the platform into frontend, intermediate representations and passes similar to the LLVM compiler architecture. OpenPiton platform [8] uses also a PyMTL-based PyOCN network on chip generator in their work on developing custom SoC chips.
 > 
-> * PyRTL [PyRTL](https://github.com/UCSBarchlab/PyRTL) is a python library for HW modeling similar to PyMTL3. The main difference is that it is a compact core library for HW development, which provides simplicity, usability, and clarity. The PyRTL can be extended with standard python modules, such as math modules to extend modeling capabilities. Verilog and Chisel FIRRTL code can be generated from PyRTL.
+> * [PyRTL](https://github.com/UCSBarchlab/PyRTL) is a python library for HW modeling similar to PyMTL3. The main difference is that it is a compact core library for HW development, which provides simplicity, usability, and clarity. The PyRTL can be extended with standard python modules, such as math modules to extend modeling capabilities. Verilog and Chisel FIRRTL code can be generated from PyRTL.
 
 ## Open Source SoC Generator and Platform
 
@@ -145,3 +145,46 @@ Chip-Copilot implements a three-pronged strategy to achieve agile hardware devel
 > * Develop implementation flow adaptable to arbitrary designs
 > * Use validated IP components to focus only on integration testing
 > * Use high-level testing abstractions to speed up test development (PyMTL)
+
+# What is Chip Copliot 2.0?
+
+The Chip Copilot 1.0 build a 100% Python-based SoC design environment that enables agile hardware development methodologies. 
+
+The **Chip Copilot 2.0** build a Agentic design flow framework for SoC design, leveraging autonomous AI agents to manage complex Chip Frontend design tasks. It employs a specialized multi-agent architecture composed of four types of key agents: the RTL code generation agent, testbench generation agent, judge agent, and debug agent. 
+
+
+
+## What Chip Copilot 2.0 do?
+
+Here are the types of tasks where Devin excels:
+
+Tackling many small tasks in parallel, before they end up in your backlog
+
+Targeted refactors
+Small user feature requests, frontend tasks, bug fixes, and edge cases
+Improving test coverage
+Investigating and fixing CI failures
+Addressing lint/static analysis errors
+Code migrations, refactors, and modernization
+
+Language migrations (e.g. JavaScript to TypeScript)
+Framework upgrades (e.g. Angular 16 -> 18)
+Monorepo to submodule conversions
+Removing unused feature flags
+Extracting common code into libraries
+Common, repetitive engineering tasks
+
+PR Review
+Codebase Q&A
+Reproducing & fixing bugs
+Writing unit tests
+Maintaining documentation
+Customer engineering support
+
+Building new integrations and working with unfamiliar APIs
+Creating customized demos
+Prototyping solutions
+Building internal tools
+
+
+
